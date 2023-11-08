@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txtName" onchange="checkChanged();"/>
+    <input type="hidden" id="changed"/>
+    <div id="container" class="test">
+        <div class="item">first</div>
+        <div>second</div>
+        <div class="item">
+            third
+        </div>
+    </div>
+    <div class="test">this is different</div>
+    <script>
+        function checkChanged() {
+            document.getElementById('hidden').value = 'Y';
+        }
+        document.querySelector('#txtName').addEventListener('change', "checkChanged();" ;
+        // alert('x');
+        // document.getElementById('container').innerHTML = "<b>Changed</b>";
+        // document.querySelector('.test').innerHTML = "<b>Changed</b>";
+        let nodes = document.querySelectorAll('.item');
+        nodes.forEach(element => {
+            element.innerHTML = "Changed each";
+            element.classList.add('highlight');
+        });
+    </script>
+</body>
+</html>

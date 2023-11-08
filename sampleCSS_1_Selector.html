@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* #box{
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            padding: 10px 5px 10px 5px;
+            margin: 10px auto 10px auto;
+            display: inline-block;
+            box-sizing: border-box;
+            outline: 5px solid red;
+            outline-offset: 10px;
+        }       */
+        
+        
+        * {
+            box-sizing: border-box;
+        }
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #container div {
+            border: 1px solid blue;
+            flex-basis: 50%;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>left</div>
+        <div>center</div>
+        <div class="right">right</div>
+        <div>left</div>
+        <div>center</div>
+        <div class="right">right</div>
+    </div>
+<script>
+    document.querySelector(".test").innerHTML = "not right";
+    var nodes = document.querySelectorAll(".test");
+    nodes.forEach((element,index) => {
+        element.innerHTML = "not right all";
+        element.classList.add("right", "another class");
+    });
+</script>
+</body>
+</html>

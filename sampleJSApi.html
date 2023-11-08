@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script type="text/javascript" src="JSSource.js"></script> -->
+
+</head>
+<body>
+
+    <div id="weather"></div>
+    <script>
+        fetch('https://run.mocky.io/v3/f1528557-0726-4f56-a3df-569a15738a07')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('weather').innerHTML = data['temperature'];
+            });
+    </script>  
+</body>
+</html>

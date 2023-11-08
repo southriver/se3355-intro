@@ -1,0 +1,22 @@
+body {
+    background-image: url('../static/photo-1692168148018-315b6920a699.avif');            
+    background-size: cover;
+}
+#box{
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 2.5%;    
+    padding: 10px 5px 10px 5px;
+    margin: 10px auto 10px auto;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: .5;
+    color: white;
+}       
+.floatImage {
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 10px;
+}
