@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: 80px auto;
+          row-gap: 8px;
+        }
+    </style>
 </head>
 <body>
     <form action="sampleProcessForm.html" method="post">
-        <input type="text"  required  id="txtName" placeholder="enter your name" >
-        
-        <input type="email" required id="txtEmail" placeholder="enter your email">
-        <input type="password"  id="txtPassword">
-        <textarea name="" id="txtComments" cols="30" rows="5">space     matters</textarea>
-        <select id="selCity" multiple>
-            <option value="0" selected="selected">Izmir</option>
-            <option value="1">Ankara</option>
-            <option value="2">Istanbul</option>
-            <option value="2" disabled>Adana - disabled</option>
-        </select>
-        <input type="button" value="Submit" >
+        <div class="grid-container" >
+            <div>Name :</div>
+            <div><input type="text"  required  id="txtName" placeholder="enter your name" ></div>
+            <div>Email : </div>
+            <div><input type="email" required id="txtEmail" placeholder="enter your email"></div>
+            <div>Password: </div>
+            <div> <input type="password"  id="txtPassword"></div>
+            <div>Comments:</div> 
+            <div><textarea name="" id="txtComments" cols="30" rows="5">space     matters</textarea></div>
+            <div>City: </div>
+            <div>
+                <select id="selCity">
+                    <option value="0" selected="selected">Izmir</option>
+                    <option value="1">Ankara</option>
+                    <option value="2">Istanbul</option>
+                    <option value="2" disabled>Adana - disabled</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Submit" onclick="alert('Form submitted');">
+            </div>
+        </div>
     </form>
 </body>
 </html>
