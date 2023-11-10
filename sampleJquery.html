@@ -4,31 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    #box {
+        width: 200px;
+        height: 200px;
+        background-color: black;
+    }
 </head>
 <body>
-    
+    <div id="box">this is the div</div>   
+
     <h1 class="classH1" id="idH1">Hello world</h1>
+    
+    <button id="btn">Button</button>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
     <script>
         $(document).ready(function() {
             $("h1").text("Change the world");
+            //$(".h1.classH1").text = "Change the world";
             // document.querySelector(h1)
-            // $(".classH1").text ("Change the world");
-            // // $("#idh1").text = "Change the world";
-            // // $(".h1.classH1").text = "Change the world";
-            $.get("https://swapi.dev/api/people/1/", function (data) {
-                console.log(data['name']);  
-                $(".classH1").text (data['name']);  
-            })
-            $.post("https://httpbin.org/post",
-            {"temperature" : "32"},
-            function(data){
-                console.log("POST complete");
-                console.log(data);
-            });
+            // $("button").click(function () {
+            //     console.log("clicked");
+            // });
+            // $("button").on("click", function () {
+            //     console.log("clicked");
+            // });            
+            // $.get("https://swapi.dev/api/people/1/", function (data) {
+            //     console.log(data['name']);  
+            //     $(".classH1").text (data['name']);  
+            // })
+            // $.post("https://httpbin.org/post",
+            // {"temperature" : "32"},
+            // function(data){
+            //     console.log("POST complete");
+            //     console.log(data);
+            // });
         })
     </script>
 </body>
