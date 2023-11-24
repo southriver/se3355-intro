@@ -4,36 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    #box {
-        width: 200px;
-        height: 200px;
-        background-color: black;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
-    <div id="box">this is the div</div>   
+    <div id="box">this is the div <h1 >This is inside the div</h1></div>   
 
     <h1 class="classH1" id="idH1">Hello world</h1>
     
+    <h1 >Hello world2</h1>
+
     <button id="btn">Button</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <textarea name="myTextArea" id="" cols="30" rows="3"></textarea>
+
+    <ul>
+        <li>blue</li>
+        <li>yellow</li>
+        <li>red</li>
+    </ul>
+
+    <input type="text" name="username" id="">
 
     <script>
         $(document).ready(function() {
-            $("h1").text("Change the world");
-            //$(".h1.classH1").text = "Change the world";
+            // $("h1").text("Change the world");
+            // $("#box").html("<b>bold</b>");
+            // $("#box").empty();
+            // $("li").each(function(index, element) {
+            //     if ($(element).text() == 'yellow') {
+            //         // $(element).css("color", "red");
+            //     }
+            //     $(element).text($(element).text() + (index + 1) );
+
+            // });
+            // let txt = $("[name='myTextArea']");
+            // txt.attr("cols", "80");
+            // $("[name='myTextArea']").keyup(function(){
+            //     console.log("value is " + $(this).val());
+            // });
+            // $("h1").prepend("<b>bold</b>-").append("-<b>bold</b>")
+            // $(".h1.classH1").text = "Change the world";
             // document.querySelector(h1)
             // $("button").click(function () {
             //     console.log("clicked");
             // });
             // $("button").on("click", function () {
             //     console.log("clicked");
-            // });            
-            // $.get("https://swapi.dev/api/people/1/", function (data) {
-            //     console.log(data['name']);  
-            //     $(".classH1").text (data['name']);  
-            // })
+            //     event.preventDefault();
+            //     $("#box").toggle();
+            // });   
+            $("button").on("click", function () {
+                $("#box").animate({width : "500px"}, 3000);
+            });
+            $.get("https://swapi.dev/api/people/1/", function (data) {
+                console.log(data['name']);  
+                $(".classH1").text (data['name']);  
+            })
             // $.post("https://httpbin.org/post",
             // {"temperature" : "32"},
             // function(data){
