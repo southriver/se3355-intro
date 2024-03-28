@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load More Data on Scroll</title>
+<style>
+  #data-container {
+    margin-top: 20px;
+  }
+  .loader {
+    text-align: center;
+    display: none;
+  }
+</style>
+</head>
+<body>
+Total Loaded <span id="totalLoaded"></span>
+<div id="data-container"><ul id="cont-list"></div></div>
+<div class="loader">
+  <img src="loader.gif" alt="Loading..." width="50">
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  var page = 1;
+  var isLoading = false;
+
+  function fetchData() {
+    isLoading = true;
+    $('.loader').show();
+
+    $.ajax({
+      url: 'https://swapi.dev/api/people/?page=' + page,
+      method: 'GET',
+      success: function(response) {
+        $('.loader').hide();
+        isLoading = false;
+        console.log(response['results'].length);
+        if (response['results'].length > 0) {
+          // Append data to the container
+          response['results'].forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = item['name'] + "<br>" + item['hair_color'] + "<br>" + item['skin_color'] 
+                        + "<br>" + item['eye_color']+ "<br>" + item['birth_year']; 
+                    $('#cont-list').append(listItem);
+                });                          
+          page++; // Increment page number for next request
+          console.log(((page - 1) * 10) + response['results'].length);
+          $('#totalLoaded').text ( ((page - 1) * 10) + response['results'].length);
+        } else {
+          // No more data available
+          $(window).off('scroll'); // Disable scroll event
+          $('#data-container').append('<p>No more data available.</p>');
+        }
+      },
+      error: function() {
+        $('.loader').hide();
+        isLoading = false;
+        $('#data-container').append('<p>Error loading data.</p>');
+      }
+    });
+  }
+
+  // Initial data fetch
+  fetchData();
+
+  // Load more data on scroll
+  $(window).scroll(function() {
+    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !isLoading) {
+      fetchData();
+    }
+  });
+});
+
+
+</script>
+</body>
+</html>

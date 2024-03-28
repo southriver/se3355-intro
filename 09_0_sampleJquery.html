@@ -34,9 +34,9 @@
 
     <script>
         $(document).ready(function() {
-            // $("h1").text("Change the world");
+            $("h1").text("Change the world");
             // $("#box").html("<b>bold</b>");
-            // $("#box").empty();
+            $("#box").empty();
             // $("li").each(function(index, element) {
             //     if ($(element).text() == 'yellow') {
             //         // $(element).css("color", "red");
@@ -60,13 +60,13 @@
             //     event.preventDefault();
             //     $("#box").toggle();
             // });   
-            $("button").on("click", function () {
-                $("#box").animate({width : "500px"}, 3000);
-            });
-            $.get("https://swapi.dev/api/people/1/", function (data) {
-                console.log(data['name']);  
-                $(".classH1").text (data['name']);  
-            })
+            // $("button").on("click", function () {
+            //     $("#box").animate({width : "500px"}, 3000);
+            // });
+            // $.get("https://swapi.dev/api/people/1/", function (data) {
+            //     console.log(data['name']);  
+            //     $(".classH1").text (data['name']);  
+            // })
             // $.post("https://httpbin.org/post",
             // {"temperature" : "32"},
             // function(data){

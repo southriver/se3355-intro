@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script type="text/javascript" src="JSSource.js"></script> -->
+
+</head>
+<body>
+
+    <div id="name"></div>
+    <div id="height"></div>
+    <div id="hair"></div>
+    <div id="skin"></div>
+    <select id="mySelect">
+        <option value="">Select an option</option>
+    </select>
+    <ul id="myList">
+    </ul>
+
+    <script>
+        fetch('https://swapi.dev/api/people/1')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('name').innerHTML = data['name'];
+                document.getElementById('height').innerHTML = data['height'];
+                document.getElementById('hair').innerHTML = data['hair_color'];
+                document.getElementById('skin').innerHTML = data['skin_color'];
+                const selectElement = document.getElementById('mySelect');
+                                
+                data['films'].forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item; // Assign value from JSON
+                    option.text = item;   // Assign text from JSON
+                    selectElement.appendChild(option);
+                });                
+                // create list
+                const listElement = document.getElementById('myList');
+                data['films'].forEach(item => {
+                    const option = document.createElement('li');
+                    option.innerHTML = "<a href='" + item + "'>" + item + "</a>";   // Assign text from JSON
+                    listElement.appendChild(option);
+                }); 
+
+            });
+    </script>  
+</body>
+</html>
+

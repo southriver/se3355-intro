@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Pagination with API Call</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h1>API Data with Pagination</h1>
+  <!-- <ul class="list-group" id="dataList"></ul> -->
+  <div class="card-columns" id="dataList"></div>
+  <nav aria-label="Page navigation" class="mt-2">
+    <ul class="pagination" id="pagination"></ul>
+  </nav>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Custom JS -->
+<script>
+const apiUrl = 'https://swapi.dev/api/people/'; // Replace with your API URL
+const itemsPerPage = 10; // Number of items per page
+
+async function fetchData(page) {
+  const response = await fetch(`${apiUrl}?page=${page}&limit=${itemsPerPage}`);
+  const data = await response.json();
+  return data;
+}
+
+async function renderData(page) {
+  const dataList = document.getElementById('dataList');
+  const pagination = document.getElementById('pagination');
+
+  // Fetch data from the API
+  const data = await fetchData(page);
+
+  // Clear previous data and pagination
+  dataList.innerHTML = '';
+  pagination.innerHTML = '';
+
+  // Populate data
+  data['results'].forEach(item => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('list-group-item');
+    listItem.textContent = item.name; // Assuming the name is a property of each item
+    dataList.appendChild(listItem);
+  });
+
+  // Generate pagination
+  const totalPages = Math.ceil(data.count / itemsPerPage);
+  console.log(totalPages);
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement('li');
+    li.classList.add('page-item');
+    const a = document.createElement('a');
+    a.classList.add('page-link');
+    a.href = '#';
+    a.textContent = i;
+    li.appendChild(a);
+    pagination.appendChild(li);
+
+    // Add event listener to each pagination link
+    a.addEventListener('click', () => renderData(i));
+  }
+}
+
+// Initial render
+renderData(1);
+
+    
+</script>
+</body>
+</html>

@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>    
 </head>
 <body>
-    <input type="text" id="txtName" onchange="checkChanged();"/>
+    <input type="text" id="txtName"  />
     <input type="hidden" id="changed"/>
     <div id="container" class="test">
         <div class="item">first</div>
@@ -18,9 +23,9 @@
     <div class="test">this is different</div>
     <script>
         function checkChanged() {
-            document.getElementById('hidden').value = 'Y';
+            document.getElementById('changed').value = 'Y';
         }
-        document.querySelector('#txtName').addEventListener('change', "checkChanged();" ;
+        document.querySelector('#txtName').addEventListener('change', checkChanged) ;
         // alert('x');
         // document.getElementById('container').innerHTML = "<b>Changed</b>";
         // document.querySelector('.test').innerHTML = "<b>Changed</b>";
