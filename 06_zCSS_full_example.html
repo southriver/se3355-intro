@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Reset */
+        *,
+        *::before,
+        *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        }
+
+        body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #f5f5f5;
+        font-family: Arial, sans-serif;
+        }
+
+        /* Card Container */
+        .card-container {
+        display: grid;
+        place-items: center;
+        gap: 1rem;
+        }
+
+        /* Card Styling */
+        .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s;
+        }
+
+        .card:hover {
+        transform: scale(1.05);
+        }
+
+        /* Card Image */
+        .card-image {
+        width: 100%;
+        height: 200px;
+        background: url('https://source.unsplash.com/random/300x200') center/cover;
+        }
+
+        /* Card Content */
+        .card-content {
+        padding: 1rem;
+        text-align: center;
+        }
+
+        .card-title {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 1rem;
+        }
+
+        /* Button with Animation */
+        .card-button {
+        padding: 0.7rem 1.5rem;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+        }
+
+        .card-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: left 0.5s;
+        }
+
+        .card-button:hover::before {
+        left: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <div class="card">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <h2 class="card-title">Beautiful Place</h2>
+            <p class="card-description">Discover the most beautiful places on Earth.</p>
+            <button class="card-button">Explore</button>
+          </div>
+        </div>
+      </div>
+      
+</body>
+</html>

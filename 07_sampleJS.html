@@ -8,9 +8,67 @@
         .highlight {
             background-color: yellow;
         }
-    </style>    
+        .always-visible {
+            min-width: 20px; /* Adjust as needed */
+            min-height: 20px; /* Adjust as needed */
+            display: inline-block; /* Ensures the span behaves like a block element */
+            background-color: lightgray; /* Optional: to visualize the span */
+        }        
+    </style>   
+    <script>
+        // let x = 'thing';
+        // "use strict"
+        let z = 'something else';
+        let num1 = 3;
+        console.log();
+        //
+        const pi = 3.14;
+        const bool = true;
+        const list = ["Item1", 3, true];
+        const thing = null;
+        const obj = {
+            name : 'Baris',
+            title : 'Instructor',
+            birthYear : 1974 
+        }
+        console.log(obj.birthYear);
+
+        let d = new Date(2024,11,1);
+        console.log(d.getHours());
+        //
+        let num = 5;
+        let str = "5";
+
+        console.log(num === 5);       // true, because both value and type match (number and number)
+        console.log(num === str);     // false, because the types don't match (number and string)
+        console.log(num == str);      // true, because == only checks value, not type
+        console.log(num === "5");     // false, because num is a number, "5" is a string
+        console.log(num === 5.0);     // true, because both are numbers and their values match
+
+        function add(extra) {
+            let res = Number(document.getElementById('num1').value) + 
+                Number(document.getElementById('num2').value) + extra;
+            document.getElementById('result').innerHTML = res;
+            if (res > 10) {
+                document.getElementById('result').style.backgroundColor = "Red";  
+            }   
+            else {
+                document.getElementById('result').style.backgroundColor = "lightgray";  
+            }                 
+        }
+        // document.getElementById('addButton').addEventListener("click", add);
+    </script>
 </head>
 <body>
+    <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
+        <input type="text" id="num1" onkeyup="add(3);" />
+        <input type="text" id="num2" onkeyup="add(3);"  />
+        </div>
+        Result: <span id="result" class="always-visible"></span>
+        <input type="button" id="addButton" onclick="add(0)" value="Calculate">
+    </div>
+
     <input type="text" id="txtName"  />
     <input type="hidden" id="changed"/>
     <div id="container" class="test">
@@ -22,18 +80,19 @@
     </div>
     <div class="test">this is different</div>
     <script>
-        function checkChanged() {
-            document.getElementById('changed').value = 'Y';
-        }
-        document.querySelector('#txtName').addEventListener('change', checkChanged) ;
+        // function checkChanged() {
+        //     document.getElementById('changed').value = 'Y';
+        // }
+        // document.querySelector('#txtName').addEventListener('change', checkChanged) ;
         // alert('x');
         // document.getElementById('container').innerHTML = "<b>Changed</b>";
-        // document.querySelector('.test').innerHTML = "<b>Changed</b>";
+        // document.querySelector('.item').innerHTML = "<b>Changed</b>";
         let nodes = document.querySelectorAll('.item');
         nodes.forEach(element => {
             element.innerHTML = "Changed each";
             element.classList.add('highlight');
         });
+
     </script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     background-image: url('../static/photo-1692168148018-315b6920a699.avif');            
     background-size: cover;
@@ -19,4 +22,7 @@ body {
     height: 200px;
     float: left;
     margin: 10px;
+}
+h1,p {
+    color: green;
 }

@@ -5,21 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <script type="text/javascript" src="JSSource.js"></script> -->
-
+    <style>
+        .hot {
+            background-color:  yellow;
+            color: blue;
+        }
+        .cold {
+            background-color: blue;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-
+    <h1>Weather in Izmir</h1>
     <div id="weather"></div>
-    <ul id="doviz">
-
-    </ul>
     
     <script>
-        fetch('https://run.mocky.io/v3/f1528557-0726-4f56-a3df-569a15738a07')
+        fetch('https://run.mocky.io/v3/de0c0ca7-2f0e-4bf5-bd5f-1c7ddb283a5a')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                document.getElementById('weather').innerHTML = data['temperature'];
+                temp = Number(data['temperature']);
+                document.getElementById('weather').innerHTML = temp;
+                if (temp > 30) {
+                    document.getElementById('weather').className = "hot";
+                }
+                else {
+                    document.getElementById('weather').className = "cold";
+                }
             });
     </script>  
 </body>
