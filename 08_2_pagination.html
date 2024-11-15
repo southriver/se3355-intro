@@ -6,24 +6,45 @@
   <title>Bootstrap Pagination with API Call</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Style the label to be hidden by default */
+    .label {
+      visibility: hidden;
+      background-color: #555;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+    }
+
+    /* Container to position the span and label */
+    .hover-container {
+      position: relative;
+      display: inline-block;
+    }
+  </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div class="container">
   <h1>API Data with Pagination</h1>
-  <!-- <ul class="list-group" id="dataList"></ul> -->
   <div class="card-columns" id="dataList"></div>
   <nav aria-label="Page navigation" class="mt-2">
     <ul class="pagination" id="pagination"></ul>
   </nav>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <!-- Custom JS -->
 <script>
+
 const apiUrl = 'https://swapi.dev/api/people/'; // Replace with your API URL
 const itemsPerPage = 10; // Number of items per page
 
@@ -44,13 +65,31 @@ async function renderData(page) {
   dataList.innerHTML = '';
   pagination.innerHTML = '';
 
+  i = 0;
   // Populate data
   data['results'].forEach(item => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-group-item');
-    listItem.textContent = item.name; // Assuming the name is a property of each item
+    // listItem.textContent = item.name; // Assuming the name is a property of each item
+    listItem.innerHTML = "<span id='hoverSpan" + (i) + "''>" + item.name + "</span><div id='hoverLabel" + (i++) + "' class='label'>" + item.films.length + " movies </div>"; 
+    // listItem.innerHTML = item.name + "<span class='badge text-bg-success'>" + item.films.length + "</span>"; 
     dataList.appendChild(listItem);
   });
+
+  // Function to add event listeners to labels with ids that start with 'hoverLabel'  
+  document.querySelectorAll("[id^='hoverLabel']").forEach(function(label) {
+      const span = label.previousElementSibling; // Get the previous span element
+
+      if (span) {
+        span.addEventListener("mouseover", function() {
+          label.style.visibility = "visible";
+        });
+
+        span.addEventListener("mouseout", function() {
+          label.style.visibility = "hidden";
+        });
+      }
+    });
 
   // Generate pagination
   const totalPages = Math.ceil(data.count / itemsPerPage);
@@ -70,10 +109,13 @@ async function renderData(page) {
   }
 }
 
+    
+
 // Initial render
 renderData(1);
 
-    
+
 </script>
+
 </body>
 </html>
